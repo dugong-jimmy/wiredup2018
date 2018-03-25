@@ -12,8 +12,12 @@ punctuations = string.punctuation
 
 parser = spacy.load('en_core_web_sm')
 
-dataset = pandas.read_csv('top-100.csv', delimiter=',')
-testset = pandas.read_csv('testing.csv', delimiter=',')
+dataset = pandas.read_csv('all-reviews.csv', delimiter=',')
+
+trainset = dataset.sample(1000)
+testset = dataset.sample(50)
+#dataset = pandas.read_csv('top-100.csv', delimiter=',')
+#testset = pandas.read_csv('testing.csv', delimiter=',')
 
 #Custom transformer using spaCy 
 class predictors(TransformerMixin):
@@ -53,7 +57,7 @@ testrating=[]
 training=[]
 testing=[]
 
-for index, row in dataset.iterrows():
+for index, row in trainset.iterrows():
     training.append([row['text'], row['rating']])
 
 for index, row in testset.iterrows():
