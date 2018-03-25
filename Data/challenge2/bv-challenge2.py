@@ -24,21 +24,5 @@ print(dataset.describe())
 # class distribution
 print(dataset.groupby('client').size())
 
-# box and whisker plots
-dataset.plot(kind='box', subplots=True, layout=(2,2), sharex=False, sharey=False)
-plt.show()
-
-# histograms
-dataset.hist()
-plt.show()
-
-# scatter plot matrix
-scatter_matrix(dataset)
-plt.show()
-
-# scatter plot matrix
-scatter_matrix(dataset)
-plt.show()
-
 for doc in nlp.pipe(iter(dataset['text'])):
     print(doc[0].text, doc[0].tag_)
